@@ -1,0 +1,13 @@
+{
+  "name": "quadrang-attendance-cron",
+  "version": "1.0.0",
+  "description": "Automated attendance cron job for Quadrang",
+  "main": "api/attendance.js",
+  "type": "module",
+  "scripts": {
+    "test": "node local-test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
