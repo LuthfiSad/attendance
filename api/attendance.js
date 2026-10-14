@@ -5,6 +5,13 @@ const LOGIN_URL = `${BASE_URL}/login/?next=/`;
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+// Helper delay acak dalam menit
+function getRandomDelayMinutes(minMinutes, maxMinutes) {
+  const minMs = minMinutes * 60 * 1000;
+  const maxMs = maxMinutes * 60 * 1000;
+  return Math.floor(Math.random() * (maxMs - minMs + 1)) + minMs;
+}
+
 /**
  * Mengacak koordinat lat/lon dalam radius tertentu (meter)
  */
@@ -82,9 +89,20 @@ export default async function handler(req, res) {
     });
   }
 
-  // Delay aman (2 - 5 detik) agar tidak melebihi timeout default 10 detik Vercel Hobby
-  const smallDelayMs = Math.floor(Math.random() * 3000) + 2000;
-  await sleep(smallDelayMs);
+  // 1. Tentukan Delay Acak Waktu
+  let delayMs = 0;
+  if (mode === 'pagi') {
+    // Range 07:15 - 07:30 -> Delay 0 s/d 15 menit
+    delayMs = getRandomDelayMinutes(0, 15);
+  } else {
+    // Range 16:30 - 17:00 -> Delay 0 s/d 30 menit
+    delayMs = getRandomDelayMinutes(0, 30);
+  }
+
+  const delayInSeconds = (delayMs / 1000).toFixed(2);
+  console.log(`[CRON] Mode: ${mode}. Menunggu delay acak selama ${delayInSeconds} detik...`);
+
+  await sleep(delayMs);
 
   const location = getRandomCoordinates(BASE_LAT, BASE_LON, 80);
   const cookieJar = new Map();
