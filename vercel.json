@@ -2,11 +2,11 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "crons": [
     {
-      "path": "/api/attendance?mode=pagi",
+      "path": "/api/trigger?mode=pagi",
       "schedule": "15 0 * * 1-5"
     },
     {
-      "path": "/api/attendance?mode=sore",
+      "path": "/api/trigger?mode=sore",
       "schedule": "30 9 * * 1-5"
     }
   ]

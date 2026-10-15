@@ -1,11 +1,9 @@
 name: Quadrang Auto Attendance
 
 on:
-  schedule:
-    # 00:15 UTC = 07:15 WIB (Senin - Jumat) -> Delay acak 0 s/d 15 menit (07:15 - 07:30 WIB)
-    - cron: '15 0 * * 1-5'
-    # 09:30 UTC = 16:30 WIB (Senin - Jumat) -> Delay acak 0 s/d 30 menit (16:30 - 17:00 WIB)
-    - cron: '30 9 * * 1-5'
+  # Ditembak langsung oleh Vercel Cron via GitHub API
+  repository_dispatch:
+    types: [trigger-attendance]
 
   # Tombol manual di tab Actions GitHub untuk testing kapan saja
   workflow_dispatch:
@@ -33,18 +31,12 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Tentukan Mode (Pagi / Sore)
-        id: determine-mode
+      - name: Tentukan Mode dari Payload
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "MODE=${{ github.event.inputs.mode }}" >> $GITHUB_ENV
+          if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
+            echo "MODE=${{ github.event.client_payload.mode }}" >> $GITHUB_ENV
           else
-            UTC_HOUR=$(date -u +%H)
-            if [ "$UTC_HOUR" -lt 5 ]; then
-              echo "MODE=pagi" >> $GITHUB_ENV
-            else
-              echo "MODE=sore" >> $GITHUB_ENV
-            fi
+            echo "MODE=${{ github.event.inputs.mode }}" >> $GITHUB_ENV
           fi
 
       - name: Eksekusi Absensi
