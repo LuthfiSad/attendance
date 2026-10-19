@@ -31,10 +31,10 @@ Tambahkan variabel berikut di **Project Settings -> Environment Variables** pada
 
 Vercel Cron menggunakan zona waktu **UTC**:
 
-- **Pagi (`clock-in`)**: `15 0 * * 1-5`
-  - Jam **00:15 UTC** = **07:15 WIB** (Senin - Jumat)
-- **Sore (`clock-out`)**: `30 9 * * 1-5`
-  - Jam **09:30 UTC** = **16:30 WIB** (Senin - Jumat)
+- **Pagi (`clock-in`)**: `3 0 * * 1-5`
+  - Jam **00:03 UTC** = **07:03 WIB** (Disesuaikan mundur 12 menit agar tereksekusi di kisaran **07:15 WIB**)
+- **Sore (`clock-out`)**: `41 8 * * 1-5`
+  - Jam **08:41 UTC** = **15:41 WIB** (Disesuaikan mundur 49 menit agar tereksekusi di kisaran **16:30 WIB**)
 
 ## Uji Coba Lokal
 

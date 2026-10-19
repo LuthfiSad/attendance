@@ -3,11 +3,11 @@
   "crons": [
     {
       "path": "/api/trigger?mode=pagi",
-      "schedule": "15 0 * * 1-5"
+      "schedule": "3 0 * * 1-5"
     },
     {
       "path": "/api/trigger?mode=sore",
-      "schedule": "30 9 * * 1-5"
+      "schedule": "41 8 * * 1-5"
     }
   ]
 }
