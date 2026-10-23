@@ -33,8 +33,8 @@ Vercel Cron menggunakan zona waktu **UTC**:
 
 - **Pagi (`clock-in`)**: `35 23 * * 0-4`
   - Jam **23:35 UTC (Minggu - Kamis)** = **06:35 WIB (Senin - Jumat)** (Disesuaikan kompensasi delay 40 menit agar tereksekusi di kisaran **07:15 WIB**)
-- **Sore (`clock-out`)**: `42 8 * * 1-5`
-  - Jam **08:42 UTC** = **15:42 WIB** (Disesuaikan kompensasi delay 48 menit agar tereksekusi pas di kisaran **16:30 WIB**)
+- **Sore (`clock-out`)**: `55 8 * * 1-5`
+  - Jam **08:55 UTC** = **15:55 WIB** (Disesuaikan kompensasi delay ~35 menit agar minimal tereksekusi pas di **16:30 WIB** dan tidak absen kepagian)
 
 ## Uji Coba Lokal
 

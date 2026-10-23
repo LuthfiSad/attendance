@@ -7,7 +7,7 @@
     },
     {
       "path": "/api/trigger?mode=sore",
-      "schedule": "42 8 * * 1-5"
+      "schedule": "55 8 * * 1-5"
     }
   ]
 }
